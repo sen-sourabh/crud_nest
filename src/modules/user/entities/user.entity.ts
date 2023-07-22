@@ -1,49 +1,104 @@
-import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UserType } from '../enums/user.enum';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import {
+  IsBoolean,
+  IsEmail,
+  IsOptional,
+  IsPhoneNumber,
+  IsString,
+} from 'class-validator';
 
 @Schema({
+  collection: 'users',
   timestamps: true,
 })
 export class User {
-  // @Prop({ required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description: 'First name of user',
+    example: 'John',
+  })
+  @IsString({ message: 'First name must be a string' })
   first_name: string;
 
-  // @Prop({ required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Last name of user',
+    example: 'Doe',
+  })
+  @IsString({ message: 'Last name must be a string' })
   last_name: string;
 
-  // @Prop({ unique: true, required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Valid email of user',
+    example: 'some@example.com',
+  })
+  @IsEmail({}, { message: 'Email must be a valid string' })
   email: string;
 
-  // @Prop({ required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Valid password of user',
+    example: 'Jhg$@87&Tywe',
+  })
+  @IsString({ message: 'Password must be a string' })
   password: string;
 
-  // @Prop({ unique: true, required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Valid 10 digit phone number of user',
+    example: '1234567890',
+  })
+  @IsPhoneNumber(undefined, {
+    message: 'Phone must be a valid 10 digit mobile number',
+  })
   phone: number;
 
-  // @Prop({ enum: UserType, default: UserType.Consumer })
-  @ApiProperty()
-  user_type: UserType;
+  @ApiPropertyOptional({
+    description: "User's photo",
+    example: 'https://example.com/avatar.png',
+  })
+  @IsString({ message: 'URL must be valid image URL' })
+  @IsOptional()
+  photo_url: string;
 
-  // @Prop({ default: 1 })
-  @ApiProperty()
-  is_active: boolean;
+  @ApiPropertyOptional({
+    description: 'Type of user like: Consumer | Admin',
+    example: 'Consumer',
+  })
+  @IsString({ message: 'user type must be a string' })
+  @IsOptional()
+  user_type?: UserType;
 
-  // @Prop({ default: 0 })
-  @ApiProperty()
-  is_deleted: boolean;
+  @ApiPropertyOptional({
+    description: 'Whether user is active or not',
+    example: 'true',
+  })
+  @IsBoolean({ message: 'Active must be true by default' })
+  @IsOptional()
+  is_active?: boolean;
 
-  // @Prop({ required: true })
-  @ApiProperty()
+  @ApiPropertyOptional({
+    description: 'Whether user is delete or not',
+    example: 'false',
+  })
+  @IsBoolean({ message: 'Delete must be false by default' })
+  @IsOptional()
+  is_deleted?: boolean;
+
+  @ApiProperty({
+    description: "User's IP address",
+    example: '127.0.0.1',
+  })
+  @IsString({ message: 'IP address must be a string' })
   ip_address: string;
 
-  // @Prop({ required: true })
-  @ApiProperty()
+  @ApiProperty({
+    description:
+      'Current location of user seperated by Comma in City, State, Country format',
+    example: 'Indore, Madhya Pradesh, India',
+  })
+  @IsString({
+    message:
+      'Current location of user seperated by Comma in City, State, Country format must be a string',
+  })
   location: string;
 }
 
