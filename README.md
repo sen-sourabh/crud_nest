@@ -148,7 +148,7 @@ Folder structure might be quite differ as we customize this structure based on o
 
 ## Stay in touch
 
-- Author - [Sourabh]
+- Author - **Sourabh**
 - Website - [(https://sourabhsen201313.wixsite.com/sourabh)](https://sourabhsen201313.wixsite.com/sourabh)
 - GitHub - [sen-sourabh](https://github.com/sen-sourabh)
 
