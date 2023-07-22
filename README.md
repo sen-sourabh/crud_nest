@@ -49,84 +49,69 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Sourabh]
-- Website - [(https://sourabhsen201313.wixsite.com/sourabh)]((https://sourabhsen201313.wixsite.com/sourabh))
-- GitHub - [sen-sourabh](https://github.com/sen-sourabh)
-
-## License
-
-[GPL-3.0 license](LICENSE).
-
 ## Folder Structure
 
 ```css
-
-├── src/
-│ ├── app.controller.ts
-│ ├── app.module.ts
-│ ├── app.service.ts
+project-root/
+├── 📂 src/
+│ ├── 📄 app.controller.ts
+│ ├── 📄 app.module.ts
+│ ├── 📄 app.service.ts
 │ │
-│ ├── modules/
-│ │ ├── user/
-│ │ │ ├── controllers/
-│ │ │ │ ├── user.controller.ts
+│ ├── 📂 modules/
+│ │ ├── 📂 user/
+│ │ │ ├── 📂 controllers/
+│ │ │ │ ├── 📄 user.controller.ts
 │ │ │ │
-│ │ │ ├── dto/ (Data Transfer Objects)
-│ │ │ │ ├── create-user.dto.ts
-│ │ │ │ ├── update-user.dto.ts
+│ │ │ ├── 📂 dto/ (Data Transfer Objects)
+│ │ │ │ ├── 📄 create-user.dto.ts
+│ │ │ │ ├── 📄 update-user.dto.ts
 │ │ │ │
-│ │ │ ├── entities/
-│ │ │ │ ├── user.entity.ts
+│ │ │ ├── 📂 entities/
+│ │ │ │ ├── 📄 user.entity.ts
 │ │ │ │
-│ │ │ ├── services/
-│ │ │ │ ├── user.service.ts
+│ │ │ ├── 📂 services/
+│ │ │ │ ├── 📄 user.service.ts
 │ │ │ │
-│ │ │ ├── user.module.ts
+│ │ │ ├── 📄 user.module.ts
 │ │ │
-│ │ ├── auth/
-│ │ │ ├── controllers/
-│ │ │ │ ├── auth.controller.ts
+│ │ ├── 📂 auth/
+│ │ │ ├── 📂 controllers/
+│ │ │ │ ├── 📄 auth.controller.ts
 │ │ │ │
-│ │ │ ├── services/
-│ │ │ │ ├── auth.service.ts
+│ │ │ ├── 📂 services/
+│ │ │ │ ├── 📄 auth.service.ts
 │ │ │ │
-│ │ │ ├── strategies/
-│ │ │ │ ├── jwt.strategy.ts
+│ │ │ ├── 📂 strategies/
+│ │ │ │ ├── 📄 jwt.strategy.ts
 │ │ │ │
-│ │ │ ├── auth.module.ts
+│ │ │ ├── 📄 auth.module.ts
 │ │ │
-│ │ ├── other-modules/ (Add more modules as needed)
+│ │ ├── 📂 other-modules/ (Add more modules as needed)
 │ │
-│ ├── shared/ (Re-usable components, pipes, etc.)
-│ │ ├── filters/
-│ │ │ ├── http-exception.filter.ts
+│ ├── 📂 shared/ (Re-usable components, pipes, etc.)
+│ │ ├── 📂 filters/
+│ │ │ ├── 📄 http-exception.filter.ts
 │ │ │
-│ │ ├── pipes/
-│ │ │ ├── validation.pipe.ts
+│ │ ├── 📂 pipes/
+│ │ │ ├── 📄 validation.pipe.ts
 │ │ │
-│ │ ├── guards/
-│ │ │ ├── jwt-auth.guard.ts
+│ │ ├── 📂 guards/
+│ │ │ ├── 📄 jwt-auth.guard.ts
 │ │ │
-│ │ ├── decorators/
-│ │ │ ├── roles.decorator.ts
+│ │ ├── 📂 decorators/
+│ │ │ ├── 📄 roles.decorator.ts
 │ │
-│ ├── main.ts (Application entry point)
+│ ├── 📄 main.ts (Application entry point)
 │
-├── test/ (Unit and E2E tests)
+├── 📂 test/ (Unit and E2E tests)
 │
-├── .env (Environment variables)
-├── .env.example (Example .env file)
-├── .gitignore
-├── package.json
-├── tsconfig.json
-└── README.md
-
+├── 📄 .env (Environment variables)
+├── 📄 .env.example (Example .env file)
+├── 📄 .gitignore
+├── 📄 package.json
+├── 📄 tsconfig.json
+└── 📄 README.md
 ```
 
 ## Description
@@ -160,3 +145,13 @@ Here is a brief description of each folder and file in the project structure:
 - `README.md`: This file, providing an overview of the project and its folder structure.
 
 Folder structure might be quite differ as we customize this structure based on our specific project requirements. This is just a starting point to help setup-ing Nest.js project effectively.
+
+## Stay in touch
+
+- Author - [Sourabh]
+- Website - [(https://sourabhsen201313.wixsite.com/sourabh)](https://sourabhsen201313.wixsite.com/sourabh)
+- GitHub - [sen-sourabh](https://github.com/sen-sourabh)
+
+## License
+
+[GPL-3.0 license](LICENSE)
