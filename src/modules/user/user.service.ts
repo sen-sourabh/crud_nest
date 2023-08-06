@@ -1,7 +1,10 @@
+import * as mongoose from 'mongoose';
+7;
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import * as mongoose from 'mongoose';
 import { User } from './entities/user.entity';
+import { UpdateUserDto } from './dto/user.update.dto';
+import { CreateUserDto } from './dto/user.create.dto';
 
 @Injectable()
 export class UserService {
@@ -15,19 +18,21 @@ export class UserService {
     return users;
   }
 
-  async create(user: User): Promise<User> {
-    console.log('User: ', user);
+  async create(user: CreateUserDto): Promise<User> {
     const result = await this.userModel.create(user);
     return result;
   }
 
   async findById(id: string): Promise<User> {
+    console.log('id: ', id);
+
     const result = await this.userModel.findById(id);
+    console.log('res: ', result);
     if (!result) throw new NotFoundException('User Not Found.');
     return result;
   }
 
-  async update(id: string, user: User): Promise<User> {
+  async update(id: string, user: UpdateUserDto): Promise<User> {
     const result = await this.userModel.findByIdAndUpdate(id, user, {
       new: true,
       runValidators: true,

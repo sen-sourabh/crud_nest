@@ -13,28 +13,28 @@ export class CreateUserDto {
     description: 'First name of user',
     example: 'John',
   })
-  @IsString({ message: 'First name must be a string' })
+  @IsString({ message: 'first_name must be a string' })
   readonly first_name: string;
 
   @ApiProperty({
     description: 'Last name of user',
     example: 'Doe',
   })
-  @IsString({ message: 'Last name must be a string' })
+  @IsString({ message: 'last_name must be a string' })
   readonly last_name: string;
 
   @ApiProperty({
     description: 'Valid email of user',
     example: 'some@example.com',
   })
-  @IsEmail({}, { message: 'Email must be a valid string' })
+  @IsEmail({}, { message: 'email must be a valid string' })
   readonly email: string;
 
   @ApiProperty({
     description: 'Valid password of user',
     example: 'Jhg$@87&Tywe',
   })
-  @IsString({ message: 'Password must be a string' })
+  @IsString({ message: 'password must be a string' })
   readonly password: string;
 
   @ApiProperty({
@@ -42,7 +42,7 @@ export class CreateUserDto {
     example: '1234567890',
   })
   @IsPhoneNumber(undefined, {
-    message: 'Phone must be a valid 10 digit mobile number',
+    message: 'phone must be a valid 10 digit mobile number',
   })
   readonly phone: number;
 
@@ -50,7 +50,7 @@ export class CreateUserDto {
     description: "User's photo",
     example: 'https://example.com/avatar.png',
   })
-  @IsString({ message: 'URL must be valid image URL' })
+  @IsString({ message: 'photo_url must be valid image URL' })
   @IsOptional()
   readonly photo_url: string;
 
@@ -58,7 +58,7 @@ export class CreateUserDto {
     description: 'Type of user like: Consumer | Admin',
     example: 'Consumer',
   })
-  @IsString({ message: 'user type must be a string' })
+  @IsString({ message: 'user_type must be a string' })
   @IsOptional()
   readonly user_type?: UserType;
 
@@ -66,7 +66,7 @@ export class CreateUserDto {
     description: 'Whether user is active or not',
     example: 'true',
   })
-  @IsBoolean({ message: 'Active must be true by default' })
+  @IsBoolean({ message: 'is_active must be a boolean' })
   @IsOptional()
   readonly is_active?: boolean;
 
@@ -74,7 +74,7 @@ export class CreateUserDto {
     description: 'Whether user is delete or not',
     example: 'false',
   })
-  @IsBoolean({ message: 'Delete must be false by default' })
+  @IsBoolean({ message: 'is_deleted must be  a boolean' })
   @IsOptional()
   readonly is_deleted?: boolean;
 
@@ -82,7 +82,7 @@ export class CreateUserDto {
     description: "User's IP address",
     example: '127.0.0.1',
   })
-  @IsString({ message: 'IP address must be a string' })
+  @IsString({ message: 'ip_address must be a string' })
   readonly ip_address: string;
 
   @ApiProperty({
@@ -92,7 +92,7 @@ export class CreateUserDto {
   })
   @IsString({
     message:
-      'Current location of user seperated by Comma in City, State, Country format must be a string',
+      'location of user seperated by Comma in City, State, Country format must be a string',
   })
   readonly location: string;
 }

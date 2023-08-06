@@ -15,7 +15,7 @@ import {
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Get('')
+  @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Returns an array of users' })
   async getAllUsers(): Promise<User[]> {
@@ -29,7 +29,7 @@ export class UserController {
     return this.userService.findById(id);
   }
 
-  @Post('')
+  @Post()
   @ApiOperation({ summary: 'Create an user' })
   @ApiResponse({
     status: 200,

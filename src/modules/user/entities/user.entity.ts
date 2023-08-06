@@ -1,4 +1,4 @@
-import { Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UserType } from '../enums/user.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
@@ -8,17 +8,21 @@ import {
   IsPhoneNumber,
   IsString,
 } from 'class-validator';
+import { Document } from 'mongoose';
 
 @Schema({
   collection: 'users',
   timestamps: true,
 })
-export class User {
+export class User extends Document {
   @ApiProperty({
     description: 'First name of user',
     example: 'John',
   })
   @IsString({ message: 'First name must be a string' })
+  @Prop({
+    required: true,
+  })
   first_name: string;
 
   @ApiProperty({
@@ -26,6 +30,9 @@ export class User {
     example: 'Doe',
   })
   @IsString({ message: 'Last name must be a string' })
+  @Prop({
+    required: true,
+  })
   last_name: string;
 
   @ApiProperty({
@@ -33,6 +40,10 @@ export class User {
     example: 'some@example.com',
   })
   @IsEmail({}, { message: 'Email must be a valid string' })
+  @Prop({
+    required: true,
+    unique: true,
+  })
   email: string;
 
   @ApiProperty({
@@ -40,6 +51,9 @@ export class User {
     example: 'Jhg$@87&Tywe',
   })
   @IsString({ message: 'Password must be a string' })
+  @Prop({
+    required: false,
+  })
   password: string;
 
   @ApiProperty({
@@ -49,6 +63,10 @@ export class User {
   @IsPhoneNumber(undefined, {
     message: 'Phone must be a valid 10 digit mobile number',
   })
+  @Prop({
+    required: false,
+    type: 'number',
+  })
   phone: number;
 
   @ApiPropertyOptional({
@@ -57,6 +75,9 @@ export class User {
   })
   @IsString({ message: 'URL must be valid image URL' })
   @IsOptional()
+  @Prop({
+    required: false,
+  })
   photo_url: string;
 
   @ApiPropertyOptional({
@@ -65,6 +86,10 @@ export class User {
   })
   @IsString({ message: 'user type must be a string' })
   @IsOptional()
+  @Prop({
+    required: false,
+    default: UserType.Consumer,
+  })
   user_type?: UserType;
 
   @ApiPropertyOptional({
@@ -73,6 +98,10 @@ export class User {
   })
   @IsBoolean({ message: 'Active must be true by default' })
   @IsOptional()
+  @Prop({
+    required: false,
+    default: true,
+  })
   is_active?: boolean;
 
   @ApiPropertyOptional({
@@ -81,6 +110,10 @@ export class User {
   })
   @IsBoolean({ message: 'Delete must be false by default' })
   @IsOptional()
+  @Prop({
+    required: false,
+    default: false,
+  })
   is_deleted?: boolean;
 
   @ApiProperty({
@@ -88,6 +121,9 @@ export class User {
     example: '127.0.0.1',
   })
   @IsString({ message: 'IP address must be a string' })
+  @Prop({
+    required: true,
+  })
   ip_address: string;
 
   @ApiProperty({
@@ -98,6 +134,9 @@ export class User {
   @IsString({
     message:
       'Current location of user seperated by Comma in City, State, Country format must be a string',
+  })
+  @Prop({
+    required: true,
   })
   location: string;
 }
