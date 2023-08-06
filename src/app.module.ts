@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './modules/user/user.module';
 import { LoggerMiddleware } from './middleware/logger/logger.middleware';
-import { AuthModule } from './modules/auth/auth.module';
+import { AccessModule } from './modules/access/access.module';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { AuthModule } from './modules/auth/auth.module';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     UserModule,
-    AuthModule,
+    AccessModule,
   ],
 })
 export class AppModule {

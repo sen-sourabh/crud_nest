@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/user.create.dto';
 import { UpdateUserDto } from './dto/user.update.dto';
 import {
   ApiBadRequestResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -25,6 +26,7 @@ export class UserController {
   @Get(':id')
   @ApiOperation({ summary: 'Get user by Id' })
   @ApiResponse({ status: 200, description: 'Returns an object of user' })
+  @ApiNotFoundResponse({ status: 404, description: 'User Not Found' })
   async getUserById(@Param('id') id: string): Promise<User> {
     return this.userService.findById(id);
   }
@@ -36,7 +38,7 @@ export class UserController {
     description: 'Returns an object of created user',
   })
   @ApiBadRequestResponse({
-    status: 404,
+    status: 400,
     description: 'User not created. Please try again.',
   })
   async createUser(@Body() user: CreateUserDto): Promise<User> {
@@ -50,7 +52,7 @@ export class UserController {
     description: 'Returns an object of updated user',
   })
   @ApiBadRequestResponse({
-    status: 404,
+    status: 400,
     description: 'User not updated. Please try again.',
   })
   async updateUser(
