@@ -1,11 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { UserType } from '../enums/user.enum';
 import {
   IsBoolean,
-  IsEmail,
   IsOptional,
-  IsPhoneNumber,
-  IsString,
+  IsString
 } from 'class-validator';
 
 export class UpdateUserDto {
@@ -23,12 +20,14 @@ export class UpdateUserDto {
   @IsString({ message: 'last_name must be a string' })
   readonly last_name?: string;
 
-  @ApiProperty({
+  //Email would not be allowed to change from User Profile or after the login
+/*  @ApiProperty({
     description: 'Valid email of user',
     example: 'some@example.com',
   })
   @IsEmail({}, { message: 'email must be a valid string' })
   readonly email?: string;
+*/
 
   @ApiProperty({
     description: 'Valid password of user',
@@ -37,7 +36,8 @@ export class UpdateUserDto {
   @IsString({ message: 'password must be a string' })
   readonly password?: string;
 
-  @ApiProperty({
+  //Phone would not be allowed to change from User Profile or after the login
+/*  @ApiProperty({
     description: 'Valid 10 digit phone number of user',
     example: '1234567890',
   })
@@ -45,6 +45,7 @@ export class UpdateUserDto {
     message: 'phone must be a valid 10 digit mobile number',
   })
   readonly phone?: number;
+*/
 
   @ApiPropertyOptional({
     description: "User's photo",
@@ -54,13 +55,15 @@ export class UpdateUserDto {
   @IsOptional()
   readonly photo_url?: string;
 
-  @ApiPropertyOptional({
+  //User type will only be change via Admin
+/*  @ApiPropertyOptional({
     description: 'Type of user like: Consumer | Admin',
     example: 'Consumer',
   })
   @IsString({ message: 'user_type must be a string' })
   @IsOptional()
   readonly user_type?: UserType;
+*/
 
   @ApiPropertyOptional({
     description: 'Whether user is active or not',
@@ -78,6 +81,7 @@ export class UpdateUserDto {
   @IsOptional()
   readonly is_deleted?: boolean;
 
+  //Whenever user data will update IP Address & Location would be update in DB
   @ApiProperty({
     description: "User's IP address",
     example: '127.0.0.1',

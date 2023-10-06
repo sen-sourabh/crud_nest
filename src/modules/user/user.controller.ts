@@ -1,16 +1,11 @@
 import {
+  Body,
   Controller,
   Get,
-  Post,
-  Put,
   Param,
-  Body,
-  UseGuards,
+  Post,
+  Put
 } from '@nestjs/common';
-import { UserService } from './user.service';
-import { User } from './entities/user.entity';
-import { CreateUserDto } from './dto/user.create.dto';
-import { UpdateUserDto } from './dto/user.update.dto';
 import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
@@ -18,7 +13,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { CreateUserDto } from './dto/user.create.dto';
+import { UpdateUserDto } from './dto/user.update.dto';
+import { User } from './entities/user.entity';
+import { UserService } from './user.service';
 
 @ApiTags('Users')
 @Controller('users')
@@ -26,7 +24,6 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Returns an array of users' })
   async getAllUsers(): Promise<User[]> {

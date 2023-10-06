@@ -1,10 +1,11 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './modules/user/user.module';
+import { DEV } from '../dev';
 import { LoggerMiddleware } from './middleware/logger/logger.middleware';
 import { AccessModule } from './modules/access/access.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -12,13 +13,17 @@ import { AuthModule } from './modules/auth/auth.module';
       envFilePath: '.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.DB_URI),
+    MongooseModule.forRoot(DEV.DB_URI),
+    AuthModule,
     UserModule,
     AccessModule,
-    AuthModule,
   ],
 })
 export class AppModule {
+  constructor() {
+    console.log("App Module");
+  }
+
   configure(consumer: MiddlewareConsumer) {
     // Apply the LoggerMiddleware to all routes
     consumer.apply(LoggerMiddleware).forRoutes('*');

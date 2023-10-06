@@ -147,11 +147,14 @@ Here is a brief description of each folder and file in the project structure:
 
 Folder structure might be quite differ as we customize this structure based on our specific project requirements. This is just a starting point to help setup-ing Nest.js project effectively.
 
-## Stay in touch
+**Working Endpoints**
+Users - GetAll, GetById, Create, Update
+Auth - generateJWTToken with mongo user data object
+Access - GetAll, GetById, getByUserId, Create
 
-- Author - **Sourabh**
-- Website - [(https://sourabhsen201313.wixsite.com/sourabh)](https://sourabhsen201313.wixsite.com/sourabh)
-- GitHub - [sen-sourabh](https://github.com/sen-sourabh)
+
+**Not Working Endpoints**
+
 
 ## License
 

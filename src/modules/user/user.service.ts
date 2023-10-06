@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './entities/user.entity';
-import { UpdateUserDto } from './dto/user.update.dto';
+import mongoose from 'mongoose';
 import { CreateUserDto } from './dto/user.create.dto';
+import { UpdateUserDto } from './dto/user.update.dto';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
@@ -13,26 +13,43 @@ export class UserService {
   ) {}
 
   async findAll(): Promise<User[]> {
-    const users = await this.userModel.find();
-    return users;
+    try {
+      const users = await this.userModel.find();
+      return users;
+    } catch (error) {
+      console.log("User FindAll Error: ", error);
+    }
   }
 
   async create(user: CreateUserDto): Promise<User> {
-    const result = await this.userModel.create(user);
-    return result;
+    try {
+      const result = await this.userModel.create(user);
+      return result;
+    } catch (error) {
+      console.log("User Create Error: ", error);
+    }
   }
 
   async findById(id: string): Promise<User> {
-    const result = await this.userModel.findById(id);
-    if (!result) throw new NotFoundException('User Not Found.');
-    return result;
+    try {
+      const result = await this.userModel.findById(id);
+      if (!result) throw new NotFoundException('User Not Found.');
+      return result;
+    } catch (error) {
+      console.log("User FindById Error: ", error);
+    }
   }
 
   async update(id: string, user: UpdateUserDto): Promise<User> {
-    const result = await this.userModel.findByIdAndUpdate(id, user, {
-      new: true,
-      runValidators: true,
-    });
-    return result;
+    console.log(id, user);
+    try {
+      //As Email and Phone would not be update after registration, Need validation here that user object do not include email and phone fields So we need to discard the request with appropriate message
+      const result = await this.userModel.findByIdAndUpdate(id, user, {
+        new: true
+      });
+      return result;
+    } catch (error) {
+      console.log("User Update Error: ", error);
+    }
   }
 }

@@ -1,9 +1,10 @@
-import mongoose from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Access } from './entities/access.entity';
-import { CreateAccessDto } from './dto/access.create.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 import { generateApiKey } from '../../utils/access';
+import { stringToObjectId } from '../../utils/function';
+import { CreateAccessDto } from './dto/access.create.dto';
+import { Access } from './entities/access.entity';
 
 @Injectable()
 export class AccessService {
@@ -13,20 +14,32 @@ export class AccessService {
   ) {}
 
   async findAll(): Promise<Access[]> {
-    const result = await this.accessModel.find();
-    return result;
+    try {
+      const result = await this.accessModel.find();
+      return result;
+    } catch (error) {
+      console.log("Access FindAll Error: ", error);
+    }
   }
 
   async findById(id: string): Promise<Access> {
-    const result = await this.accessModel.findById(id);
-    if (!result) throw new NotFoundException();
-    return result;
+    try {
+      const result = await this.accessModel.findById(stringToObjectId(id));
+      if (!result) throw new NotFoundException();
+      return result;
+    } catch (error) {
+      console.log("Access FindbyId Error: ", error);
+    }
   }
 
   async findAllByUser(id: string): Promise<Access[]> {
-    const result = await this.accessModel.find({ user_id: id });
-    if (result.length == 0) throw new NotFoundException();
-    return result;
+    try {
+      const result = await this.accessModel.find({ user_id: id });
+      if (result.length == 0) throw new NotFoundException();
+      return result;
+    } catch (error) {
+      console.log("Access FindAllByUser Error: ", error);
+    }
   }
 
   async create(access: CreateAccessDto): Promise<Access> {
@@ -34,7 +47,11 @@ export class AccessService {
       ...access,
       api_key: generateApiKey(),
     };
-    const result = await this.accessModel.create(newaccess);
-    return result;
+    try {
+      const result = await this.accessModel.create(newaccess);
+      return result;
+    } catch (error) {
+      console.log("Access Create Error: ", error);
+    }
   }
 }

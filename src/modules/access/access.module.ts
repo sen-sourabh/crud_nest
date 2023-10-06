@@ -11,4 +11,8 @@ import { AccessService } from './access.service';
   controllers: [AccessController],
   providers: [AccessService],
 })
-export class AccessModule {}
+export class AccessModule {
+  constructor() {
+    console.log("Access Module");
+  }
+}

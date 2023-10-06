@@ -9,4 +9,8 @@ import { UserSchema } from './entities/user.entity';
   controllers: [UserController],
   providers: [UserService],
 })
-export class UserModule {}
+export class UserModule {
+  constructor() {
+    console.log("User Module");
+  }
+}

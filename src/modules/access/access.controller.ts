@@ -1,5 +1,4 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
-import { Access } from './entities/access.entity';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
@@ -7,8 +6,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateAccessDto } from './dto/access.create.dto';
 import { AccessService } from './access.service';
+import { CreateAccessDto } from './dto/access.create.dto';
+import { Access } from './entities/access.entity';
 
 @ApiTags('Access')
 @Controller('access')
@@ -25,7 +25,7 @@ export class AccessController {
   @Get(':id')
   @ApiOperation({ summary: 'Get access by Id' })
   @ApiResponse({ status: 200, description: 'Returns an object of access' })
-  @ApiNotFoundResponse({ status: 404, description: 'access Not Found' })
+  @ApiNotFoundResponse({ status: 404, description: 'Access Not Found' })
   async getaccessById(@Param('id') id: string): Promise<Access> {
     return this.accessService.findById(id);
   }
@@ -36,7 +36,7 @@ export class AccessController {
     status: 200,
     description: 'Returns an array of access of user',
   })
-  @ApiNotFoundResponse({ status: 404, description: 'access Not Found' })
+  @ApiNotFoundResponse({ status: 404, description: 'Access Not Found' })
   async getaccessByUserId(
     @Param('user_id') user_id: string,
   ): Promise<Access[]> {
@@ -51,7 +51,7 @@ export class AccessController {
   })
   @ApiBadRequestResponse({
     status: 400,
-    description: 'access not created. Please try again.',
+    description: 'Access not created. Please try again.',
   })
   async createUser(@Body() access: CreateAccessDto): Promise<Access> {
     return this.accessService.create(access);
