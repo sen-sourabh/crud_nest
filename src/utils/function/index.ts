@@ -13,7 +13,9 @@ export const getEmailUsername = (email: string): string => {
 };
 
 // Function to convert a string to ObjectId
-export const stringToObjectId = (str: string): mongoose.Types.ObjectId | null => {
+export const stringToObjectId = (
+  str: string,
+): mongoose.Types.ObjectId | null => {
   try {
     return new mongoose.Types.ObjectId(str);
   } catch (error) {
@@ -23,7 +25,9 @@ export const stringToObjectId = (str: string): mongoose.Types.ObjectId | null =>
 };
 
 // Function to convert an ObjectId to a string
-export const objectIdToString = (objectId: mongoose.Types.ObjectId): string | null => {
+export const objectIdToString = (
+  objectId: mongoose.Types.ObjectId,
+): string | null => {
   try {
     return objectId.toString();
   } catch (error) {

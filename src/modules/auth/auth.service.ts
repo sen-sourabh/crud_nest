@@ -5,8 +5,7 @@ import { User } from '../user/entities/user.entity';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly jwtService: JwtService,
-    // private readonly userService: UserService,
+    private readonly jwtService: JwtService, // private readonly userService: UserService,
   ) {}
 
   async generateJwtToken(user: User) {
@@ -16,7 +15,7 @@ export class AuthService {
         access_token: this.jwtService.sign(payload),
       };
     } catch (error) {
-      console.log("Generate JWT TOKEN Error: ", error);
+      console.log('Generate JWT TOKEN Error: ', error);
     }
   }
 

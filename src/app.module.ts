@@ -5,6 +5,7 @@ import { DEV } from '../dev';
 import { LoggerMiddleware } from './middleware/logger/logger.middleware';
 import { AccessModule } from './modules/access/access.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
 import { UserModule } from './modules/user/user.module';
 
 @Module({
@@ -17,11 +18,12 @@ import { UserModule } from './modules/user/user.module';
     AuthModule,
     UserModule,
     AccessModule,
+    InventoryModule,
   ],
 })
 export class AppModule {
   constructor() {
-    console.log("App Module");
+    console.log('App Module');
   }
 
   configure(consumer: MiddlewareConsumer) {

@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { UserType } from '../enums/user.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsBoolean,
@@ -9,6 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Document } from 'mongoose';
+import { UserType } from '../enums/user.enum';
 
 @Schema({
   collection: 'users',

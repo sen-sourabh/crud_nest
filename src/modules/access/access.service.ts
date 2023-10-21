@@ -18,7 +18,7 @@ export class AccessService {
       const result = await this.accessModel.find();
       return result;
     } catch (error) {
-      console.log("Access FindAll Error: ", error);
+      console.log('Access FindAll Error: ', error);
     }
   }
 
@@ -28,7 +28,7 @@ export class AccessService {
       if (!result) throw new NotFoundException();
       return result;
     } catch (error) {
-      console.log("Access FindbyId Error: ", error);
+      console.log('Access FindbyId Error: ', error);
     }
   }
 
@@ -38,7 +38,7 @@ export class AccessService {
       if (result.length == 0) throw new NotFoundException();
       return result;
     } catch (error) {
-      console.log("Access FindAllByUser Error: ", error);
+      console.log('Access FindAllByUser Error: ', error);
     }
   }
 
@@ -51,7 +51,7 @@ export class AccessService {
       const result = await this.accessModel.create(newaccess);
       return result;
     } catch (error) {
-      console.log("Access Create Error: ", error);
+      console.log('Access Create Error: ', error);
     }
   }
 }

@@ -11,6 +11,6 @@ import { UserSchema } from './entities/user.entity';
 })
 export class UserModule {
   constructor() {
-    console.log("User Module");
+    console.log('User Module');
   }
 }

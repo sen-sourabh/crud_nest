@@ -156,6 +156,44 @@ Access - GetAll, GetById, getByUserId, Create
 **Not Working Endpoints**
 
 
+
+**inventory**
+id (ObjectId),
+itemId (cutom itemId like: `IN_123456789` (new Date().toTime()) `type: string``),
+name (sring),
+modelNumber (string),
+description (string),
+category (ObjectId),
+quantity (number),
+image (binary),
+image_url (string),
+addedBy (ObjectId),
+barcode (string),
+qrcode (string),
+weight (string),
+width (millimeters/centimeters) (string),
+height (millimeters/centimeters) (string),
+depth (millimeters/centimeters (string)),
+refrigerated (boolean: true/false),
+location (where you are keeping/kept) (string),
+minimumStockLevel (number),
+maximumStockLevel (number),
+isInStock (boolean: true/false),
+isActive (boolean: true/false),
+isDeleted (boolean: true/false),
+createdAt (datetime),
+updatedAt (datetime),
+
+**assignedInventory**
+id (ObjectId),
+requestedBy (ObjectId),
+approvedBy (ObjectId),
+approved (boolean: true/false),
+quantity (number),
+createdAt (datetime),
+updatedAt (datetime),
+
+
 ## License
 
 [GPL-3.0 license](LICENSE)

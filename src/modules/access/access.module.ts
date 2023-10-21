@@ -13,6 +13,6 @@ import { AccessService } from './access.service';
 })
 export class AccessModule {
   constructor() {
-    console.log("Access Module");
+    console.log('Access Module');
   }
 }

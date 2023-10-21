@@ -1,9 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import {
-  IsBoolean,
-  IsOptional,
-  IsString
-} from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -21,7 +17,7 @@ export class UpdateUserDto {
   readonly last_name?: string;
 
   //Email would not be allowed to change from User Profile or after the login
-/*  @ApiProperty({
+  /*  @ApiProperty({
     description: 'Valid email of user',
     example: 'some@example.com',
   })
@@ -37,7 +33,7 @@ export class UpdateUserDto {
   readonly password?: string;
 
   //Phone would not be allowed to change from User Profile or after the login
-/*  @ApiProperty({
+  /*  @ApiProperty({
     description: 'Valid 10 digit phone number of user',
     example: '1234567890',
   })
@@ -56,7 +52,7 @@ export class UpdateUserDto {
   readonly photo_url?: string;
 
   //User type will only be change via Admin
-/*  @ApiPropertyOptional({
+  /*  @ApiPropertyOptional({
     description: 'Type of user like: Consumer | Admin',
     example: 'Consumer',
   })

@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsDateString, IsOptional, IsString } from 'class-validator';
+import { Document, Types } from 'mongoose';
 import { generateDatetimeOfMonthForward } from '../../../utils/datetime';
 import { User } from '../../user/entities/user.entity';
-import { Document, Types } from 'mongoose';
 
 @Schema({
   collection: 'access',

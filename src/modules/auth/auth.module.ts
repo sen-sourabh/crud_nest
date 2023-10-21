@@ -19,6 +19,6 @@ import { AuthService } from './auth.service';
 })
 export class AuthModule {
   constructor() {
-    console.log("Auth Module");
+    console.log('Auth Module');
   }
 }
