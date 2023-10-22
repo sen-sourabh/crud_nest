@@ -316,4 +316,4 @@ export class Inventory extends Document {
     location: string;
 }
 
-export const AccessSchema = SchemaFactory.createForClass(Inventory);
+export const InventorySchema = SchemaFactory.createForClass(Inventory);
