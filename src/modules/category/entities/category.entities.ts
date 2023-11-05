@@ -44,7 +44,7 @@ export class Category extends Document {
     @IsString({ message: 'Parent category id must be a string/hexa string' })
     @Prop({
         required: false,
-        ref: Category.name,
+        ref: Category.name
     })
     parent_category_id: Types.ObjectId;
 

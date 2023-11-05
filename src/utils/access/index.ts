@@ -9,5 +9,5 @@ export const generateApiKey = (length = 25): string => {
     apiKey += characters.charAt(randomIndex);
   }
 
-  return apiKey;
+  return apiKey + ':' + new Date().getTime();
 };

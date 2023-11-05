@@ -1,5 +1,4 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { UserType } from '../enums/user.enum';
 import {
   IsBoolean,
   IsEmail,
@@ -7,25 +6,26 @@ import {
   IsPhoneNumber,
   IsString,
 } from 'class-validator';
+import { UserType } from '../enums/user.enum';
 
 export class CreateUserDto {
   @ApiProperty({
     description: 'First name of user',
-    example: 'John',
+    example: 'First',
   })
   @IsString({ message: 'first_name must be a string' })
   readonly first_name: string;
 
   @ApiProperty({
     description: 'Last name of user',
-    example: 'Doe',
+    example: 'Last',
   })
   @IsString({ message: 'last_name must be a string' })
   readonly last_name: string;
 
   @ApiProperty({
     description: 'Valid email of user',
-    example: 'some@example.com',
+    example: 'admin@example.com',
   })
   @IsEmail({}, { message: 'email must be a valid string' })
   readonly email: string;
@@ -48,7 +48,7 @@ export class CreateUserDto {
 
   @ApiPropertyOptional({
     description: "User's photo",
-    example: 'https://example.com/avatar.png',
+    example: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   })
   @IsString({ message: 'photo_url must be valid image URL' })
   @IsOptional()
