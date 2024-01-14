@@ -1,9 +1,9 @@
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { SwaggerLoader } from './config/swagger';
-import { Logger } from '@nestjs/common';
 import { appReady } from './config/app-ready';
+import { SwaggerLoader } from './config/swagger';
 
 async function bootstrap() {
   const PORT = 3000;

@@ -5,8 +5,10 @@ import { InventoryController } from './inventory.controller';
 import { InventoryService } from './inventory.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Inventory', schema: InventorySchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'Inventory', schema: InventorySchema }]),
+  ],
   providers: [InventoryService],
-  controllers: [InventoryController]
+  controllers: [InventoryController],
 })
 export class InventoryModule {}

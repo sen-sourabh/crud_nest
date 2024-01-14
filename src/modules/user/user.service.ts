@@ -17,7 +17,7 @@ export class UserService {
       const users = await this.userModel.find();
       return users;
     } catch (error) {
-      console.log('User FindAll Error: ', error);
+      console.log('List user error: ', error);
     }
   }
 
@@ -26,7 +26,7 @@ export class UserService {
       const result = await this.userModel.create(user);
       return result;
     } catch (error) {
-      console.log('User Create Error: ', error);
+      console.log('Create user error: ', error);
     }
   }
 
@@ -36,12 +36,11 @@ export class UserService {
       if (!result) throw new NotFoundException('User Not Found.');
       return result;
     } catch (error) {
-      console.log('User FindById Error: ', error);
+      console.log('Get user error: ', error);
     }
   }
 
   async update(id: string, user: UpdateUserDto): Promise<User> {
-    console.log(id, user);
     try {
       //As Email and Phone would not be update after registration, Need validation here that user object do not include email and phone fields So we need to discard the request with appropriate message
       const result = await this.userModel.findByIdAndUpdate(id, user, {
@@ -49,7 +48,8 @@ export class UserService {
       });
       return result;
     } catch (error) {
-      console.log('User Update Error: ', error);
+      console.log('Update user error: ', error);
+      return error;
     }
   }
 }

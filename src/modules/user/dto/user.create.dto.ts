@@ -48,7 +48,8 @@ export class CreateUserDto {
 
   @ApiPropertyOptional({
     description: "User's photo",
-    example: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    example:
+      'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   })
   @IsString({ message: 'photo_url must be valid image URL' })
   @IsOptional()
