@@ -8,6 +8,7 @@ export class UpdateCategoryDto {
     example: 'Hardware',
   })
   @IsString({ message: 'Name must be a string' })
+  @IsOptional()
   readonly name?: string;
 
   @ApiProperty({
@@ -47,6 +48,7 @@ export class UpdateCategoryDto {
     example: '64c4ab16336bcced427a125c',
   })
   @IsString({ message: 'Admin user id must be a string/hexa string' })
+  @IsOptional()
   readonly added_by?: Types.ObjectId;
 
   @ApiPropertyOptional({
@@ -70,7 +72,7 @@ export class UpdateCategoryDto {
     example: '127.0.0.1',
   })
   @IsString({ message: 'ip_address must be a string' })
-  readonly ip_address?: string;
+  readonly ip_address: string;
 
   @ApiProperty({
     description:
@@ -81,5 +83,5 @@ export class UpdateCategoryDto {
     message:
       'location of user seperated by Comma in City, State, Country format must be a string',
   })
-  readonly location?: string;
+  readonly location: string;
 }

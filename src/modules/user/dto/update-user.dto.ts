@@ -83,7 +83,7 @@ export class UpdateUserDto {
     example: '127.0.0.1',
   })
   @IsString({ message: 'ip_address must be a string' })
-  readonly ip_address?: string;
+  readonly ip_address: string;
 
   @ApiProperty({
     description:
@@ -94,5 +94,5 @@ export class UpdateUserDto {
     message:
       'location of user seperated by Comma in City, State, Country format must be a string',
   })
-  readonly location?: string;
+  readonly location: string;
 }

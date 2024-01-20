@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOperation,
@@ -6,11 +6,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CategoryService } from './category.service';
-import { CreateCategoryDto } from './dto/category.create.dto';
-import { GetCategoryDto } from './dto/category.get.dto';
-import { UpdateCategoryDto } from './dto/category.update.dto';
+import { CreateCategoryDto } from './dto/create-category.dto';
+import { GetCategoryDto } from './dto/get-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entities';
-import { SanitizeFilterPipe } from './pipes/sanitize_filter.pipe';
+import { SanitizeFiterPipe } from './pipes/sanitize_filter.pipe';
+import { SanitizeUpdateRequestPipe } from './pipes/sanitize_update_request.pipe';
 
 @ApiTags('Categories')
 @Controller('category')
@@ -21,12 +22,12 @@ export class CategoryController {
   @ApiOperation({ summary: 'Get all categories ' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiResponse({ status: 200, description: 'Returns a list of categories' })
-  async getAllCategories(
-    @Body(new SanitizeFilterPipe()) filter?: GetCategoryDto,
+  async getCategories(
+    @Body(new SanitizeFiterPipe()) filter?: GetCategoryDto,
   ): Promise<Category[]> {
     console.log('control: ', filter);
 
-    return this.categoryService.getAllCategories(filter);
+    return this.categoryService.getCategories(filter);
   }
 
   @Post('create')
@@ -46,9 +47,17 @@ export class CategoryController {
   @Put()
   @ApiOperation({ summary: 'Update the category' })
   async updateCategory(
-    @Param() id: string,
-    @Body() category: UpdateCategoryDto,
+    @Param('id') id: string,
+    @Body(new SanitizeUpdateRequestPipe()) category: UpdateCategoryDto,
   ): Promise<Category> {
     return this.categoryService.update(id, category);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete the category' })
+  async deleteCategory(@Param('id') id: string): Promise<any> {
+    console.log('del: ', id);
+
+    return this.categoryService.delete(id);
   }
 }

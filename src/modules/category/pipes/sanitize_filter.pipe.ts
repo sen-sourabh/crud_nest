@@ -1,13 +1,17 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { GetCategoryDto } from '../dto/category.get.dto';
+import {
+  ArgumentMetadata,
+  BadRequestException,
+  Injectable,
+  PipeTransform,
+} from '@nestjs/common';
+import { GetCategoryDto } from '../dto/get-category.dto';
 
 @Injectable()
-export class SanitizeFilterPipe implements PipeTransform {
+export class SanitizeFiterPipe implements PipeTransform {
   transform(value?: GetCategoryDto, metadata?: ArgumentMetadata) {
-    console.log('val: ', value);
     if (typeof value === 'object') {
       return JSON.parse(JSON.stringify(value));
     }
-    return {};
+    throw new BadRequestException('Invalid request payload');
   }
 }
