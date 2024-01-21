@@ -8,7 +8,11 @@ import { InventoryService } from './inventory.service';
   imports: [
     MongooseModule.forFeature([{ name: 'Inventory', schema: InventorySchema }]),
   ],
-  providers: [InventoryService],
   controllers: [InventoryController],
+  providers: [InventoryService],
 })
-export class InventoryModule {}
+export class InventoryModule {
+  constructor() {
+    console.log('Inventory Module');
+  }
+}

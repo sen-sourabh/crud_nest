@@ -10,7 +10,7 @@ import { Category } from './entities/category.entities';
 export class CategoryService {
   constructor(
     @InjectModel(Category.name)
-    private categoryModel: mongoose.Model<Category>,
+    private readonly categoryModel: mongoose.Model<Category>,
   ) {}
 
   async getCategories(filter?: GetCategoryDto): Promise<Category[]> {

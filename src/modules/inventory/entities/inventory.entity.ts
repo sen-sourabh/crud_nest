@@ -250,6 +250,7 @@ export class Inventory extends Document {
     required: false,
     type: 'number',
     default: 1,
+    min: 1,
   })
   minimum_stock_level: number;
 
@@ -266,6 +267,7 @@ export class Inventory extends Document {
     required: false,
     type: 'number',
     default: 10000,
+    min: 10,
   })
   maximum_stock_level: number;
 
