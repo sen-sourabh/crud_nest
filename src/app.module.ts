@@ -6,6 +6,7 @@ import { LoggerMiddleware } from './middleware/logger/logger.middleware';
 import { AccessModule } from './modules/access/access.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoryModule } from './modules/category/category.module';
+import { GeosModule } from './modules/geos/geos.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { UserModule } from './modules/user/user.module';
 
@@ -21,6 +22,7 @@ import { UserModule } from './modules/user/user.module';
     AccessModule,
     InventoryModule,
     CategoryModule,
+    GeosModule,
   ],
 })
 export class AppModule {

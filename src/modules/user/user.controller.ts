@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
@@ -7,6 +15,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
+import { GetUserDto } from './dto/get-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -60,5 +69,27 @@ export class UserController {
     @Body() user: UpdateUserDto,
   ): Promise<User> {
     return this.userService.update(id, user);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete user by id' })
+  @ApiResponse({
+    status: 200,
+    description: 'User has been deleted',
+  })
+  async deleteUser(@Param('id') id: string): Promise<GetUserDto> {
+    return this.userService.delete(id);
+  }
+
+  @Delete()
+  @ApiOperation({ summary: 'Delete multiple users by id' })
+  @ApiResponse({
+    status: 200,
+    description: 'Users has been deleted',
+  })
+  async deleteMultipleUsers(
+    @Body() ids: string[],
+  ): Promise<{ acknowledged: boolean; deletedCount: number }> {
+    return this.userService.deleteMultiples(ids);
   }
 }
