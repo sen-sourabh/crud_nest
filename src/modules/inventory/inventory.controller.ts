@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SanitizeFiterPipe } from '../../pipes/sanitizers/get-filters.pipe';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
@@ -12,6 +20,7 @@ export class InventoryController {
   constructor(private inventoryService: InventoryService) {}
 
   @Post('/create')
+  @HttpCode(201)
   create(@Body() createInventoryDto: CreateInventoryDto) {
     return this.inventoryService.create(createInventoryDto);
   }
@@ -22,11 +31,13 @@ export class InventoryController {
     status: 200,
     description: 'Get inventory data.',
   })
+  @HttpCode(200)
   getinventory(@Body(new SanitizeFiterPipe()) filter: FilterInventoryDto) {
     return this.inventoryService.getInventory(filter);
   }
 
-  @Patch(':id')
+  @Put(':id')
+  @HttpCode(200)
   update(
     @Param('id') id: string,
     @Body() updateInventoryDto: UpdateInventoryDto,
@@ -35,6 +46,7 @@ export class InventoryController {
   }
 
   @Delete(':id')
+  @HttpCode(200)
   remove(@Param('id') id: string) {
     return this.inventoryService.remove(+id);
   }

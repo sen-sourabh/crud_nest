@@ -1,8 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
+import { SignInWithEmailPasswordDto } from '../auth/dto/signin.dto';
 import { CreateUserDto } from './dto/create-user.dto';
-import { GetUserDto } from './dto/get-user.dto';
+import { FilterUserDto, GetUserDto } from './dto/get-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 
@@ -13,9 +14,9 @@ export class UserService {
     private userModel: mongoose.Model<User>,
   ) {}
 
-  async findAll(): Promise<User[]> {
+  async getUsers(filter?: FilterUserDto): Promise<User[]> {
     try {
-      const users = await this.userModel.find();
+      const users = await this.userModel.find(filter);
       return users;
     } catch (error) {
       console.log('List user error: ', error);
@@ -35,6 +36,8 @@ export class UserService {
   async findById(id: string): Promise<User> {
     try {
       const result = await this.userModel.findById(id);
+      console.log('res: ', result);
+
       if (result) {
         return result;
       }
@@ -85,6 +88,23 @@ export class UserService {
       throw new NotFoundException('Users Not Found.');
     } catch (error) {
       console.log('Delete multiple user error: ', error);
+      return error;
+    }
+  }
+
+  async getUserByEmailPassword(
+    body: SignInWithEmailPasswordDto,
+  ): Promise<User> {
+    try {
+      const user = await this.userModel.find(body);
+      if (user.length > 0) {
+        return user[0];
+      }
+      throw new NotFoundException(
+        'Invalid email or password, Please try agian with valid credentials',
+      );
+    } catch (error) {
+      console.log('SignIn email or password error: ', error);
       return error;
     }
   }
