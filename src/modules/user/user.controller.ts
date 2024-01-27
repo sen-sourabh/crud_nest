@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -14,8 +15,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { SanitizeFiterPipe } from '../../pipes/sanitizers/get-filters.pipe';
 import { CreateUserDto } from './dto/create-user.dto';
-import { GetUserDto } from './dto/get-user.dto';
+import { FilterUserDto, GetUserDto } from './dto/get-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -28,7 +30,9 @@ export class UserController {
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Returns an array of users' })
-  async getAllUsers(): Promise<User[]> {
+  async getAllUsers(
+    @Query(new SanitizeFiterPipe()) filter?: FilterUserDto,
+  ): Promise<User[]> {
     return this.userService.findAll();
   }
 

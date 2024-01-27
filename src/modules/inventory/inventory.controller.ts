@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SanitizeFiterPipe } from '../category/pipes/sanitize_filter.pipe';
+import { SanitizeFiterPipe } from '../../pipes/sanitizers/get-filters.pipe';
 import { CreateInventoryDto } from './dto/create-inventory.dto';
-import { GetInventoryDto } from './dto/get-inventory.dto';
+import { FilterInventoryDto } from './dto/get-inventory.dto';
 import { UpdateInventoryDto } from './dto/update-inventory.dto';
 import { InventoryService } from './inventory.service';
 
@@ -22,7 +22,7 @@ export class InventoryController {
     status: 200,
     description: 'Get inventory data.',
   })
-  getinventory(@Body(new SanitizeFiterPipe()) filter: GetInventoryDto) {
+  getinventory(@Body(new SanitizeFiterPipe()) filter: FilterInventoryDto) {
     return this.inventoryService.getInventory(filter);
   }
 

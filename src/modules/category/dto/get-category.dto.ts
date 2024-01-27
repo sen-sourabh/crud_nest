@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsBase64, IsBoolean, IsString } from 'class-validator';
+import { IsBase64, IsBoolean, IsOptional, IsString } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class GetCategoryDto {
@@ -82,5 +82,67 @@ export class GetCategoryDto {
     message:
       'location of user seperated by Comma in City, State, Country format must be a string',
   })
+  readonly location?: string;
+}
+
+export class FilterCategroyDto {
+  @ApiProperty({
+    description: 'Id of the category',
+  })
+  @IsString({ message: 'id must be a string/hexa string' })
+  @IsOptional()
+  readonly _id?: string;
+
+  @ApiProperty({
+    description: 'Name of the category',
+  })
+  @IsString({ message: 'Name must be a string' })
+  @IsOptional()
+  readonly name?: string;
+
+  @ApiProperty({
+    description: 'Id of the parent category',
+  })
+  @IsString({ message: 'Parent category id must be a string/hexa string' })
+  @IsOptional()
+  readonly parent_category_id?: Types.ObjectId;
+
+  @ApiProperty({
+    description: 'Id of the admin user who adding the category',
+  })
+  @IsString({ message: 'Admin user id must be a string/hexa string' })
+  @IsOptional()
+  readonly added_by?: Types.ObjectId;
+
+  @ApiPropertyOptional({
+    description: 'Whether user is active or not',
+  })
+  @IsBoolean({ message: 'is_active must be a boolean' })
+  @IsOptional()
+  readonly is_active?: boolean;
+
+  @ApiPropertyOptional({
+    description: 'Whether user is delete or not',
+  })
+  @IsBoolean({ message: 'is_deleted must be  a boolean' })
+  @IsOptional()
+  readonly is_deleted?: boolean;
+
+  @ApiProperty({
+    description: "User's IP address",
+  })
+  @IsString({ message: 'ip_address must be a string' })
+  @IsOptional()
+  readonly ip_address?: string;
+
+  @ApiProperty({
+    description:
+      'Current location of user seperated by Comma in City, State, Country format',
+  })
+  @IsString({
+    message:
+      'location of user seperated by Comma in City, State, Country format must be a string',
+  })
+  @IsOptional()
   readonly location?: string;
 }

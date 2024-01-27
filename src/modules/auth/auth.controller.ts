@@ -1,5 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { Body, Controller, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOperation,
@@ -7,6 +6,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { User } from '../user/entities/user.entity';
+import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -23,8 +23,7 @@ export class AuthController {
     status: 400,
     description: 'Token not generated. Please try again.',
   })
-  async generateToken(@Body() user: User) {
-    const result = this.authService.generateJwtToken(user);
-    return result;
+  generateToken(@Body() user: User) {
+    return this.authService.generateJwtToken(user);
   }
 }

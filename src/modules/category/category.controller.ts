@@ -1,16 +1,25 @@
-import { Body, Controller, Delete, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { SanitizeFiterPipe } from '../../pipes/sanitizers/get-filters.pipe';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { GetCategoryDto } from './dto/get-category.dto';
+import { FilterCategroyDto } from './dto/get-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entities';
-import { SanitizeFiterPipe } from './pipes/sanitize_filter.pipe';
 import { SanitizeUpdateRequestPipe } from './pipes/sanitize_update_request.pipe';
 
 @ApiTags('Categories')
@@ -18,15 +27,13 @@ import { SanitizeUpdateRequestPipe } from './pipes/sanitize_update_request.pipe'
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
-  @Post()
+  @Get()
   @ApiOperation({ summary: 'Get all categories ' })
   @ApiResponse({ status: 400, description: 'Bad Request' })
   @ApiResponse({ status: 200, description: 'Returns a list of categories' })
   async getCategories(
-    @Body(new SanitizeFiterPipe()) filter?: GetCategoryDto,
+    @Query(new SanitizeFiterPipe()) filter?: FilterCategroyDto,
   ): Promise<Category[]> {
-    console.log('control: ', filter);
-
     return this.categoryService.getCategories(filter);
   }
 
@@ -56,8 +63,18 @@ export class CategoryController {
   @Delete(':id')
   @ApiOperation({ summary: 'Delete the category' })
   async deleteCategory(@Param('id') id: string): Promise<any> {
-    console.log('del: ', id);
-
     return this.categoryService.delete(id);
+  }
+
+  @Delete()
+  @ApiOperation({ summary: 'Delete multiple categories by id' })
+  @ApiResponse({
+    status: 200,
+    description: 'Categories has been deleted',
+  })
+  async deleteMultipleCategories(
+    @Body() ids: string[],
+  ): Promise<{ acknowledged: boolean; deletedCount: number }> {
+    return this.categoryService.deleteMultiples(ids);
   }
 }
