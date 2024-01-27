@@ -8,6 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Document, Types } from 'mongoose';
+import { Category } from '../../category/entities/category.entities';
 import { User } from '../../user/entities/user.entity';
 
 @Schema({
@@ -69,7 +70,7 @@ export class Inventory extends Document {
   @IsString({ message: 'Category id must be a string/hexa string' })
   @Prop({
     required: true,
-    // ref: Category.name,
+    ref: Category.name,
   })
   category_id: Types.ObjectId;
 

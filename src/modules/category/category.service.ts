@@ -45,7 +45,7 @@ export class CategoryService {
     }
   }
 
-  async delete(id: string): Promise<any> {
+  async delete(id: string): Promise<GetCategoryDto> {
     try {
       console.log('delete: ', id);
       return await this.categoryModel.findByIdAndRemove(id);

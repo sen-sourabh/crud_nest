@@ -8,7 +8,7 @@ export class GetCategoryDto {
     example: '64c4ab16336bcced427a125c',
   })
   @IsString({ message: 'id must be a string/hexa string' })
-  readonly id?: string;
+  readonly _id?: string;
 
   @ApiProperty({
     description: 'Name of the category',
