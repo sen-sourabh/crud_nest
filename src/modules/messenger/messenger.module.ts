@@ -9,16 +9,16 @@ import { MessengerService } from './messenger.service';
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false, // Set to true for 465, false for other ports
+        host: process.env.SMTP_HOST,
+        port: +process.env.SMTP_PORT,
+        secure: Boolean(process.env.SMTP_SECURE), // Set to true for 465, false for other ports
         auth: {
-          user: 'sourabhsen201313@gmail.com',
-          pass: 'gure rwtu ubyu gttu',
+          user: process.env.SMTP_USERNAME,
+          pass: process.env.SMTP_PASSWORD,
         },
       },
       defaults: {
-        from: '"no-reply" <sourabhsen201313@gmail.com>',
+        from: process.env.SMTP_DEFAULTS,
       },
       template: {
         dir: join(
@@ -27,7 +27,7 @@ import { MessengerService } from './messenger.service';
         ),
         adapter: new HandlebarsAdapter(),
         options: {
-          strict: true,
+          strict: Boolean(process.env.SMTP_OPTIONS_STRICT),
         },
       },
     }),
@@ -37,6 +37,6 @@ import { MessengerService } from './messenger.service';
 })
 export class MessengerModule {
   constructor() {
-    console.log('__dirname: ', __dirname, ' | ', join(__dirname, 'templates'));
+    // console.log('__dirname: ', __dirname, ' | ', join(__dirname, 'templates'));
   }
 }

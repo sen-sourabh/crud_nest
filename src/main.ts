@@ -6,7 +6,7 @@ import { appReady } from './config/app-ready';
 import { SwaggerLoader } from './config/swagger';
 
 async function bootstrap() {
-  const PORT = 3000;
+  const PORT = process.env.PORT;
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.useLogger(Logger);
