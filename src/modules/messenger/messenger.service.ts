@@ -13,7 +13,7 @@ export class MessengerService {
     try {
       const sentResponse: any = await this.mailerService.sendMail({
         to,
-        from: 'sourabhsen201313@gmail.com',
+        from: process.env.SMTP_USERNAME,
         subject: 'OTP for login in NestJS',
         template: './otp',
         html: await this.compileHTMLToHandlebars('otp.hbs', {

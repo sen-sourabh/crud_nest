@@ -14,7 +14,7 @@ export class MessengerController {
   constructor(private readonly messengerService: MessengerService) {}
 
   @Post('sendOtp')
-  @ApiOperation({ summary: 'Will sent email with OTP' })
+  @ApiOperation({ summary: 'Will send email with OTP' })
   @ApiResponse({
     status: 200,
     description: 'OTP sent successfully',

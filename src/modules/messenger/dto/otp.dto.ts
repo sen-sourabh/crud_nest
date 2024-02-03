@@ -22,7 +22,7 @@ export class OTPRequestDto {
     description: 'Email of receiver',
     example: 'sen.shishubh@gmail.com',
   })
-  @IsString({ message: 'Name must be a string' })
+  @IsString({ message: 'Email must be a string' })
   readonly to: string;
 
   @ApiProperty({
