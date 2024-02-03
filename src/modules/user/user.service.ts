@@ -20,6 +20,7 @@ export class UserService {
       return users;
     } catch (error) {
       console.log('List user error: ', error);
+      throw new Error('Failed to fetch users.');
     }
   }
 
@@ -29,7 +30,7 @@ export class UserService {
       return result;
     } catch (error) {
       console.log('Create user error: ', error);
-      return error;
+      throw new Error('Failed to create user.');
     }
   }
 
@@ -44,7 +45,7 @@ export class UserService {
       throw new NotFoundException('User Not Found.');
     } catch (error) {
       console.log('Get user error: ', error);
-      return error;
+      throw new Error(`Failed to fetch user with id: ${id}.`);
     }
   }
 
@@ -60,7 +61,7 @@ export class UserService {
       throw new NotFoundException('User Not Found.');
     } catch (error) {
       console.log('Update user error: ', error);
-      return error;
+      throw new Error(`Failed to update user with id: ${id}`);
     }
   }
 
@@ -73,7 +74,7 @@ export class UserService {
       throw new NotFoundException('User Not Found.');
     } catch (error) {
       console.log('Delete user error: ', error);
-      return error;
+      throw new Error(`Failed to delete user with id: ${id}`);
     }
   }
 
@@ -88,7 +89,9 @@ export class UserService {
       throw new NotFoundException('Users Not Found.');
     } catch (error) {
       console.log('Delete multiple user error: ', error);
-      return error;
+      throw new Error(
+        `Failed to delete all users with ids: ${ids}, May be some users deleted. Please verify using getUserById/getAllUsers APIs`,
+      );
     }
   }
 
@@ -105,7 +108,9 @@ export class UserService {
       );
     } catch (error) {
       console.log('SignIn email or password error: ', error);
-      return error;
+      throw new Error(
+        `Failed to fetch user with email: ${body?.email} & password: ${body?.password}`,
+      );
     }
   }
 }
