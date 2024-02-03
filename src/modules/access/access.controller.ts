@@ -19,7 +19,7 @@ export class AccessController {
   @ApiOperation({ summary: 'Get all access' })
   @ApiResponse({ status: 200, description: 'Returns an array of access' })
   @HttpCode(200)
-  async getAllaccess(): Promise<Access[]> {
+  async getAllAccess(): Promise<Access[]> {
     return await this.accessService.findAll();
   }
 

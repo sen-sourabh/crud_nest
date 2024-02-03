@@ -9,6 +9,8 @@ import { CategoryModule } from './modules/category/category.module';
 import { GeosModule } from './modules/geos/geos.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { UserModule } from './modules/user/user.module';
+import { MessengerService } from './modules/messenger/messenger.service';
+import { MessengerModule } from './modules/messenger/messenger.module';
 
 @Module({
   imports: [
@@ -23,7 +25,9 @@ import { UserModule } from './modules/user/user.module';
     InventoryModule,
     CategoryModule,
     GeosModule,
+    MessengerModule,
   ],
+  providers: [MessengerService],
 })
 export class AppModule {
   constructor() {

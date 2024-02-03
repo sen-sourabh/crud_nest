@@ -19,6 +19,5 @@ export class SignInWithEmailPasswordDto {
 
 export class VerificationJWTTokenDto {
   @IsString()
-  @IsNotEmpty()
   access_token: string;
 }
