@@ -18,8 +18,4 @@ import { AuthService } from './auth.service';
   providers: [AuthService],
   exports: [],
 })
-export class AuthModule {
-  constructor() {
-    console.log('Auth Module');
-  }
-}
+export class AuthModule {}

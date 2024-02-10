@@ -35,8 +35,7 @@ export class MessengerService {
   ): Promise<string> {
     try {
       const html = await fsPromises.readFile(
-        'C:/Users/soura/OneDrive/Documents/Projects/nest/backend/dist/modules/messenger' +
-          `/templates/${filename}`,
+        __dirname + `/templates/${filename}`,
         { encoding: 'utf-8' },
       );
       const template = compile(html);

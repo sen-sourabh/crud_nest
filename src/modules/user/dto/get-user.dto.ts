@@ -1,3 +1,4 @@
+import { Prop } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
@@ -5,7 +6,7 @@ import {
   IsPhoneNumber,
   IsString,
 } from 'class-validator';
-import { UserType } from '../enums/user.enum';
+import { UserTypeEnum } from '../enums/user.enum';
 
 export class GetUserDto {
   @ApiProperty({
@@ -64,7 +65,18 @@ export class GetUserDto {
     example: 'Consumer',
   })
   @IsString({ message: 'user type must be a string' })
-  user_type?: UserType;
+  @Prop({
+    required: false,
+    enum: UserTypeEnum,
+    default: UserTypeEnum.Consumer,
+    validate: {
+      validator: (value: UserTypeEnum) => {
+        return Object.values(UserTypeEnum).includes(value);
+      },
+      message: 'Invalid user type',
+    },
+  })
+  user_type?: string;
 
   @ApiProperty({
     description: 'Whether user is active or not',
@@ -142,7 +154,7 @@ export class FilterUserDto {
   })
   @IsString({ message: 'user type must be a string' })
   @IsOptional()
-  readonly user_type?: UserType;
+  readonly user_type?: UserTypeEnum;
 
   @ApiProperty({
     description: 'Whether user is active or not',

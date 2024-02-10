@@ -1,5 +1,7 @@
+import { Prop } from '@nestjs/mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsBoolean, IsOptional, IsString } from 'class-validator';
+import { UserTypeEnum } from '../enums/user.enum';
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -52,14 +54,24 @@ export class UpdateUserDto {
   readonly photo_url?: string;
 
   //User type will only be change via Admin
-  /*  @ApiPropertyOptional({
+  @ApiPropertyOptional({
     description: 'Type of user like: Consumer | Admin',
     example: 'Consumer',
   })
   @IsString({ message: 'user_type must be a string' })
   @IsOptional()
-  readonly user_type?: UserType;
-*/
+  @Prop({
+    required: false,
+    enum: UserTypeEnum,
+    default: UserTypeEnum.Consumer,
+    validate: {
+      validator: (value: UserTypeEnum) => {
+        return Object.values(UserTypeEnum).includes(value);
+      },
+      message: 'Invalid user type',
+    },
+  })
+  readonly user_type?: string;
 
   @ApiPropertyOptional({
     description: 'Whether user is active or not',

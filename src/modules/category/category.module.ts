@@ -11,8 +11,4 @@ import { CategorySchema } from './entities/category.entities';
   providers: [CategoryService],
   controllers: [CategoryController],
 })
-export class CategoryModule {
-  constructor() {
-    console.log('Category Module');
-  }
-}
+export class CategoryModule {}
