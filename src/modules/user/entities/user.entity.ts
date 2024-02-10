@@ -8,7 +8,7 @@ import {
   IsString,
 } from 'class-validator';
 import { Document } from 'mongoose';
-import { UserType } from '../enums/user.enum';
+import { UserTypeEnum } from '../enums/user.enum';
 
 @Schema({
   collection: 'users',
@@ -88,9 +88,16 @@ export class User extends Document {
   @IsOptional()
   @Prop({
     required: false,
-    default: UserType.Consumer,
+    enum: UserTypeEnum,
+    default: UserTypeEnum.Consumer,
+    validate: {
+      validator: (value: UserTypeEnum) => {
+        return Object.values(UserTypeEnum).includes(value);
+      },
+      message: 'Invalid user type',
+    },
   })
-  user_type?: UserType;
+  user_type?: string;
 
   @ApiPropertyOptional({
     description: 'Whether user is active or not',

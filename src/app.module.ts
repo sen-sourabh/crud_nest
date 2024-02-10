@@ -1,7 +1,6 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { LoggerMiddleware } from './middleware/logger/logger.middleware';
 import { AccessModule } from './modules/access/access.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoryModule } from './modules/category/category.module';
@@ -28,13 +27,4 @@ import { UserModule } from './modules/user/user.module';
   ],
   providers: [MessengerService],
 })
-export class AppModule {
-  constructor() {
-    console.log('App Module');
-  }
-
-  configure(consumer: MiddlewareConsumer) {
-    // Apply the LoggerMiddleware to all routes
-    consumer.apply(LoggerMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AccessController } from './access.controller';
-import { AccessSchema } from './entities/access.entity';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AccessController } from './access.controller';
 import { AccessService } from './access.service';
+import { AccessSchema } from './entities/access.entity';
 
 @Module({
   imports: [
@@ -11,8 +11,4 @@ import { AccessService } from './access.service';
   controllers: [AccessController],
   providers: [AccessService],
 })
-export class AccessModule {
-  constructor() {
-    console.log('Access Module');
-  }
-}
+export class AccessModule {}

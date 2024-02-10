@@ -11,8 +11,4 @@ import { InventoryService } from './inventory.service';
   controllers: [InventoryController],
   providers: [InventoryService],
 })
-export class InventoryModule {
-  constructor() {
-    console.log('Inventory Module');
-  }
-}
+export class InventoryModule {}

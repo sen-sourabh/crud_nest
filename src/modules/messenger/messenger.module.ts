@@ -21,10 +21,7 @@ import { MessengerService } from './messenger.service';
         from: process.env.SMTP_DEFAULTS,
       },
       template: {
-        dir: join(
-          'C:/Users/soura/OneDrive/Documents/Projects/nest/backend/dist/modules/messenger',
-          'templates',
-        ),
+        dir: join(__dirname, 'templates'),
         adapter: new HandlebarsAdapter(),
         options: {
           strict: Boolean(process.env.SMTP_OPTIONS_STRICT),
@@ -35,8 +32,4 @@ import { MessengerService } from './messenger.service';
   providers: [MessengerService],
   controllers: [MessengerController],
 })
-export class MessengerModule {
-  constructor() {
-    // console.log('__dirname: ', __dirname, ' | ', join(__dirname, 'templates'));
-  }
-}
+export class MessengerModule {}
