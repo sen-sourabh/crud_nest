@@ -1,0 +1,13 @@
+{
+    "title": "CRUD Nest Documentation",
+    "output": "documentation/",
+    "template": "src/modules/messenger/templates/",
+    "port": 3000,
+    "theme": "laravel",
+    "watch": true,
+    "silent": true,
+    "disableSourceCode": true,
+    "disablePrivate": true,
+    "hideGenerator": true,
+    "disableCoverage": true
+}

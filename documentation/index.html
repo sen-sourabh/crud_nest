@@ -1,0 +1,300 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>crud_nest documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/laravel.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">crud_nest documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+</p>
+
+<p align="center"><a href="https://github.com/nestjs/nest" target="_blank">Nest</a> is a progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+
+<h2>Description</h2>
+<p>This is the Nest CRUD Project for practice.
+Swagger Documentation: <a href="http://localhost:3000/api">http://localhost:3000/api</a></p>
+<h2>Installation</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ npm install</code></pre></div><h2>Running the lint and fix all lint errors</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">$ npm run lint</code></pre></div><h2>Running the app</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod</code></pre></div><h2>Test</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash"># unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov</code></pre></div><h2>Folder Structure</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-css">project-root/
+├── 📂 src/
+│ ├── 📄 app.controller.ts
+│ ├── 📄 app.module.ts
+│ ├── 📄 app.service.ts
+│ │
+│ ├── 📂 modules/
+│ │ ├── 📂 user/
+│ │ │ ├── 📂 controllers/
+│ │ │ │ ├── 📄 user.controller.ts
+│ │ │ │
+│ │ │ ├── 📂 dto/ (Data Transfer Objects)
+│ │ │ │ ├── 📄 create-user.dto.ts
+│ │ │ │ ├── 📄 update-user.dto.ts
+│ │ │ │
+│ │ │ ├── 📂 entities/
+│ │ │ │ ├── 📄 user.entity.ts
+│ │ │ │
+│ │ │ ├── 📂 services/
+│ │ │ │ ├── 📄 user.service.ts
+│ │ │ │
+│ │ │ ├── 📄 user.module.ts
+│ │ │
+│ │ ├── 📂 auth/
+│ │ │ ├── 📂 controllers/
+│ │ │ │ ├── 📄 auth.controller.ts
+│ │ │ │
+│ │ │ ├── 📂 services/
+│ │ │ │ ├── 📄 auth.service.ts
+│ │ │ │
+│ │ │ ├── 📂 strategies/
+│ │ │ │ ├── 📄 jwt.strategy.ts
+│ │ │ │
+│ │ │ ├── 📄 auth.module.ts
+│ │ │
+│ │ ├── 📂 other-modules/ (Add more modules as needed)
+│ │
+│ ├── 📂 shared/ (Re-usable components, pipes, etc.)
+│ │ ├── 📂 filters/
+│ │ │ ├── 📄 http-exception.filter.ts
+│ │ │
+│ │ ├── 📂 pipes/
+│ │ │ ├── 📄 validation.pipe.ts
+│ │ │
+│ │ ├── 📂 guards/
+│ │ │ ├── 📄 jwt-auth.guard.ts
+│ │ │
+│ │ ├── 📂 decorators/
+│ │ │ ├── 📄 roles.decorator.ts
+│ │
+│ ├── 📄 main.ts (Application entry point)
+│
+├── 📂 test/ (Unit and E2E tests)
+│
+├── 📄 .env (Environment variables)
+├── 📄 .env.example (Example .env file)
+├── 📄 .gitignore
+├── 📄 package.json
+├── 📄 tsconfig.json
+└── 📄 README.md</code></pre></div><h2>Description</h2>
+<p>Here is a brief description of each folder and file in the project structure:</p>
+<ul>
+<li><code>src/</code>: This directory contains the main application files.</li>
+<li><code>app.controller.ts</code>: The main controller that handles incoming HTTP requests and routes them to the appropriate service.</li>
+<li><code>app.module.ts</code>: The root module that organizes all other modules and components of the application.</li>
+<li><code>app.service.ts</code>: The main service that contains the application&#39;s business logic.</li>
+<li><code>modules/</code>: This directory organizes the application into different modules, each responsible for specific features.</li>
+<li><code>user/</code>: An example module for managing user-related operations.<ul>
+<li><code>controllers/</code>: Contains controller files that handle user-related HTTP endpoints.</li>
+<li><code>dto/</code>: Contains Data Transfer Objects (DTOs) used for data validation and data transformation.</li>
+<li><code>entities/</code>: Contains the TypeORM entities representing the user data model.</li>
+<li><code>services/</code>: Contains service files that handle user-related business logic.</li>
+<li><code>user.module.ts</code>: The module file that ties together all the components of the user module.</li>
+</ul>
+</li>
+<li><code>auth/</code>: An example module for handling authentication and authorization.<ul>
+<li><code>controllers/</code>: Contains controller files that handle authentication-related endpoints.</li>
+<li><code>services/</code>: Contains service files responsible for authentication and authorization logic.</li>
+<li><code>strategies/</code>: Contains strategy files for implementing authentication strategies (e.g., JWT strategy).</li>
+<li><code>auth.module.ts</code>: The module file that ties together all the components of the authentication module.</li>
+</ul>
+</li>
+<li><code>other-modules/</code>: You can add more modules here as needed, each with its own controller, service, etc.</li>
+<li><code>shared/</code>: Contains re-usable components, filters, pipes, guards, and decorators that can be used across multiple modules.</li>
+<li><code>test/</code>: Contains unit tests and end-to-end tests for your application.</li>
+<li><code>.env</code>: The environment file where you can define environment variables for your application.</li>
+<li><code>.env.example</code>: An example <code>.env</code> file to show the format and expected variables.</li>
+<li><code>.gitignore</code>: The file to specify which files and directories should be ignored by version control (e.g., <code>.env</code>).</li>
+<li><code>package.json</code>: Contains project metadata, dependencies, and scripts.</li>
+<li><code>tsconfig.json</code>: TypeScript configuration file.</li>
+<li><code>README.md</code>: This file, providing an overview of the project and its folder structure.</li>
+</ul>
+<p>Folder structure might be quite differ as we customize this structure based on our specific project requirements. This is just a starting point to help setup-ing Nest.js project effectively.</p>
+<p><strong>Working Endpoints</strong>
+Users - GetAll, GetById, Create, Update
+Auth - generateJWTToken with mongo user data object
+Access - GetAll, GetById, getByUserId, Create</p>
+<p><strong>Not Working Endpoints</strong></p>
+<h2>License</h2>
+<p><a href="LICENSE">GPL-3.0 license</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

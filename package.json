@@ -8,6 +8,7 @@
   "scripts": {
     "build": "nest build",
     "build:swc": "npx swc src -d dist",
+    "g:doc": "npx @compodoc/compodoc -p tsconfig.json -s -w",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -43,6 +44,7 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.23",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
