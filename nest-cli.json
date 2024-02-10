@@ -19,6 +19,8 @@
           "controllerKeyOfComment": "description"
         }
       }
-    ]
+    ],
+    "assets": ["**/*.hbs"],
+    "watchAssets": true
   }
 }

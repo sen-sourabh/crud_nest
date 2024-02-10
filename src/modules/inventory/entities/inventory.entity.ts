@@ -19,7 +19,7 @@ export class Inventory extends Document {
   @ApiProperty({
     description:
       'Unique item id of item with the prefix of `IN_` followed by ISO Date string that generates dynamically',
-    example: 'IN_2023-10-15T15:22:29.820Z', //IN_new Date().toISOString()
+    example: 'IN_1706347991940', //IN_new Date().getTime()
   })
   @IsString({ message: 'Item id must be a string' })
   @Prop({
@@ -86,11 +86,9 @@ export class Inventory extends Document {
         'Quanity must be a valid positive number that should be greater than 0 (> 0)',
     },
   )
-  @IsOptional()
   @Prop({
-    required: false,
+    required: true,
     type: 'number',
-    default: 0,
   })
   quantity: number;
 

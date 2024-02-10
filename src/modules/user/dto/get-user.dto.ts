@@ -1,5 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsPhoneNumber, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsOptional,
+  IsPhoneNumber,
+  IsString,
+} from 'class-validator';
 import { UserType } from '../enums/user.enum';
 
 export class GetUserDto {
@@ -92,4 +97,82 @@ export class GetUserDto {
       'Current location of user seperated by Comma in City, State, Country format must be a string',
   })
   location?: string;
+}
+
+export class FilterUserDto {
+  @ApiProperty({
+    description: 'Id of the user',
+  })
+  @IsString({ message: 'id must be a string/hexa string' })
+  @IsOptional()
+  readonly _id?: string;
+
+  @ApiProperty({
+    description: 'First name of user',
+  })
+  @IsString({ message: 'First name must be a string' })
+  @IsOptional()
+  readonly first_name?: string;
+
+  @ApiProperty({
+    description: 'Last name of user',
+  })
+  @IsString({ message: 'Last name must be a string' })
+  @IsOptional()
+  readonly last_name?: string;
+
+  @ApiProperty({
+    description: 'Valid email of user',
+  })
+  @IsString({ message: 'Email must be a valid string' })
+  @IsOptional()
+  readonly email?: string;
+
+  @ApiProperty({
+    description: 'Valid 10 digit phone number of user',
+  })
+  @IsPhoneNumber(undefined, {
+    message: 'Phone must be a valid 10 digit mobile number',
+  })
+  @IsOptional()
+  readonly phone?: number;
+
+  @ApiProperty({
+    description: 'Type of user like: Consumer | Admin',
+  })
+  @IsString({ message: 'user type must be a string' })
+  @IsOptional()
+  readonly user_type?: UserType;
+
+  @ApiProperty({
+    description: 'Whether user is active or not',
+  })
+  @IsBoolean({ message: 'Active must be true by default' })
+  @IsOptional()
+  readonly is_active?: boolean;
+
+  @ApiProperty({
+    description: 'Whether user is delete or not',
+  })
+  @IsBoolean({ message: 'Delete must be false by default' })
+  @IsOptional()
+  readonly is_deleted?: boolean;
+
+  @ApiProperty({
+    description: "User's IP address",
+  })
+  @IsString({ message: 'IP address must be a string' })
+  @IsOptional()
+  readonly ip_address?: string;
+
+  @ApiProperty({
+    description:
+      'Current location of user seperated by Comma in City, State, Country format',
+  })
+  @IsString({
+    message:
+      'Current location of user seperated by Comma in City, State, Country format must be a string',
+  })
+  @IsOptional()
+  readonly location?: string;
 }
