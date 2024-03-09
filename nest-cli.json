@@ -22,7 +22,14 @@
         }
       }
     ],
-    "assets": ["**/*.hbs"],
+    "assets": [
+      "**/*.hbs",
+      {
+        "include": "assets",
+        "outDir": "dist",
+        "watchAssets": true
+      }
+    ],
     "watchAssets": true
   }
 }

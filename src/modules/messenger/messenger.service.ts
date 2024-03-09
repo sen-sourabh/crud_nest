@@ -34,6 +34,12 @@ export class MessengerService {
     content: OTPDto,
   ): Promise<string> {
     try {
+      // const html = await fsPromises.readFile(
+      //   __dirname + `/templates/${filename}`,
+      //   { encoding: 'utf-8' },
+      // );
+      console.log('hjjjj: ', __dirname);
+
       const html = await fsPromises.readFile(
         __dirname + `/templates/${filename}`,
         { encoding: 'utf-8' },
